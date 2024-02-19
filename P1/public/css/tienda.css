@@ -5,6 +5,15 @@
     margin: 40px auto; /* Centra el contenedor en la página */
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+
 h1 {
     color: #ffffff;
     margin-bottom: 48px;
@@ -18,16 +27,19 @@ h1 {
 }
 
 .producto {
-    width: calc(50% - 20px); /* Ajuste para 2 productos por fila con espacio */
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra los elementos horizontalmente */
-}
+    background-color: rgba(0, 0, 0, 0.7); /* Un fondo negro con transparencia */
+    border-radius: 10px; /* Bordes redondeados para suavizar la apariencia */
+    padding: 20px; /* Espacio interior para no pegar el contenido a los bordes */
+    color: white; /* Cambia el color del texto a blanco para contraste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para dar profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para efectos al pasar el ratón */
+  }
+  
+  .producto:hover {
+    transform: translateY(-5px); /* Eleva ligeramente el cuadro al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el ratón */
+  }
+  
 
 .producto img {
     width: auto; /* Permite que la imagen ajuste su ancho automáticamente */
