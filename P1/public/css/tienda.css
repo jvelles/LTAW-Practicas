@@ -1,14 +1,3 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5; /* Color de fondo general */
-    min-height: 100vh; /* Altura mínima de la ventana */
-}
-
 .contenedor {
     text-align: center;
     width: 80%;
@@ -17,7 +6,7 @@ body, html {
 }
 
 h1 {
-    color: #333;
+    color: #ffffff;
     margin-bottom: 48px;
 }
 
@@ -86,3 +75,41 @@ h1 {
 .contenedor-boton button:hover {
     background-color: #0056b3; /* Azul oscuro al pasar el mouse */
 }
+
+.metodos-pago {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 200px; /* O el tamaño que prefieras */
+    z-index: 10;
+}
+
+.metodos-pago h3 {
+    color: #ffffff; /* O el color que prefieras */
+    font-size: 1em; /* O el tamaño de fuente que prefieras */
+    text-align: center;
+    margin: 0 0 5px 0; /* Ajusta el margen según necesites */
+}
+
+.metodos-pago img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    height: auto;
+  }
+  
+  body {
+    background-image: url('/fondo.jpg'); /* Reemplaza con la URL de tu imagen de fondo */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* O 'fixed' si prefieres que el fondo no se desplace con el scroll */
+    background-size: cover;
+    background-color: #f5f5f5; /* Color de fondo en caso de que la imagen no cargue */
+  }
+  
