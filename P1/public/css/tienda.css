@@ -5,11 +5,19 @@
     margin: 40px auto; /* Centra el contenedor en la página */
 }
 
+@font-face {
+    font-family: 'FuenteTitulo'; /* Asigna un nombre a tu fuente */
+    src: url('/fuente.ttf') format('truetype'); /* Cambia la URL al archivo de tu fuente */
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+
 body {
     font-family: 'Roboto', sans-serif;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
   }
   
@@ -17,6 +25,7 @@ body {
 h1 {
     color: #ffffff;
     margin-bottom: 48px;
+    font-family: 'FuenteTitulo', sans-serif;
 }
 
 .productos {
@@ -27,43 +36,61 @@ h1 {
 }
 
 .producto {
-    background-color: rgba(0, 0, 0, 0.7); /* Un fondo negro con transparencia */
-    border-radius: 10px; /* Bordes redondeados para suavizar la apariencia */
+    width: 250px; /* Ancho fijo para cada cuadro de producto */
+    height: 350px; /* Altura fija para cada cuadro de producto */
+    margin: 20px; /* Margen para evitar que los cuadros se toquen entre sí */
+    background-color: rgba(0, 0, 0, 0.7); /* Un fondo negro con algo de transparencia */
+    border-radius: 10px; /* Esquinas redondeadas para un aspecto más suave */
     padding: 20px; /* Espacio interior para no pegar el contenido a los bordes */
-    color: white; /* Cambia el color del texto a blanco para contraste */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para dar profundidad */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para efectos al pasar el ratón */
+    color: white; /* Color de texto blanco para mayor contraste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para efecto de profundidad */
+    overflow: hidden; /* Oculta el contenido que excede el tamaño del cuadro */
+    display: flex; /* Usa flexbox para alinear el contenido internamente */
+    flex-direction: column; /* Organiza los hijos de producto en una columna */
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    transition: all 0.3s ease; /* Transición suave para interacciones del ratón */
   }
   
-  .producto:hover {
-    transform: translateY(-5px); /* Eleva ligeramente el cuadro al pasar el ratón */
+.producto:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el ratón */
   }
-  
 
 .producto img {
-    width: auto; /* Permite que la imagen ajuste su ancho automáticamente */
-    height: 160px; /* Altura fija para las imágenes */
-    object-fit: contain; /* Asegura que la imagen se vea completa y centrada */
-    margin-top: 10px; /* Espacio superior para la imagen dentro del producto */
-}
+    width: auto; /* Asegura que la imagen se ajuste dentro del cuadro */
+    max-height: 120px; /* Altura máxima para la imagen para mantener el diseño uniforme */
+    margin-bottom: 15px; /* Margen debajo de la imagen */
+  }
 
-.producto h2, .producto p {
-    margin: 20px;
-}
+.producto h2 {
+    margin: 10px 0; /* Margen arriba y abajo para el título del producto */
+    text-align: center; /* Asegura que el título esté centrado */
+  }
+  
+ 
+.producto p {
+    text-align: center; /* Asegura que la descripción esté centrada */
+    margin-bottom: 15px; /* Margen debajo de la descripción */
+  } 
+
+.producto button {
+    cursor: pointer; /* Cambia el cursor a un puntero para indicar que es clickeable */
+  } 
 
 .producto a {
     display: inline-block;
-    background-color: #007bff;
+    background-color: #000000;
     color: white;
     padding: 10px 15px;
+    border: none;
     text-decoration: none;
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
 .producto a:hover {
-    background-color: #0056b3;
+    background-color: #434a52;
 }
 
 .contenedor-boton {
@@ -72,7 +99,7 @@ h1 {
 }
 
 .contenedor-boton button {
-    background-color: #007bff; /* Azul */
+    background-color: #000000; 
     color: white; /* Texto blanco */
     border: none;
     padding: 10px 20px;
@@ -85,7 +112,7 @@ h1 {
 }
 
 .contenedor-boton button:hover {
-    background-color: #0056b3; /* Azul oscuro al pasar el mouse */
+    background-color: #434a52; /* Azul oscuro al pasar el mouse */
 }
 
 .metodos-pago {
@@ -125,3 +152,92 @@ html, body {
     background-color: #f5f5f5; /* Color de fondo en caso de que la imagen no cargue */
   }
   
+  /* Estilos básicos para tu formulario */
+.form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+  }
+  
+  /* Estilos para las etiquetas de los campos del formulario */
+  .form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #333;
+  }
+  
+  /* Estilo para los campos de entrada */
+  .form input[type="email"],
+  .form select,
+  .form textarea,
+  .form input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Estilo específico para los textos de entrada de texto completo */
+  .form .u-full-width {
+    font-size: 0.95em;
+    line-height: 1.4em;
+    background: #f9f9f9;
+  }
+  
+  /* Estilo para el área de texto */
+  .form textarea {
+    height: 120px;
+  }
+  
+  /* Estilos para el botón de envío */
+  .form .button-primary {
+    display: inline-block;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Cambia el color del botón al pasar el ratón */
+  .form .button-primary:hover {
+    background-color: #555;
+  }
+  
+  /* Estilo para la etiqueta del checkbox */
+  .form .example-send-yourself-copy {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para el texto del checkbox */
+  .form .label-body {
+    margin-left: 8px;
+    color: #333;
+    font-size: 0.9em;
+  }
+  
+  /* Ajustes de responsive design */
+  @media (max-width: 767px) {
+    .forminput[type="email"],
+    .form select,
+    .form textarea,
+    .form input[type="checkbox"] {
+    width: 100%;
+    }
+    
+    .form .row {
+    flex-direction: column;
+    }
+    
+    .form .six.columns {
+    width: 100%;
+    }
+    }

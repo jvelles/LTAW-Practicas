@@ -5,14 +5,17 @@
     <title>Tienda de Componentes de Ordenador</title>
     <link rel="stylesheet" href="/css/tienda.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+
 
 </head>
 <body>
+
     <div class="contenedor">
         <h1>LOS MEJORES COMPONENTES DEL MERCADO</h1>
     <div class="productos">
         <div class="producto">
-            <img src="/images/tarjeta-grafica.jpg" alt="Tarjeta Gráfica">
+            <img src="/images/tarjeta-grafica1.png" alt="Tarjeta Gráfica">
             <h2>Tarjeta Gráfica</h2>
             <p>La última tecnología en gráficos para tu PC.</p>
             <a href="/views/tarjeta_grafica.html">Ver más</a>
@@ -42,5 +45,28 @@
             <img src="images/pagos.png" alt="Métodos de Pago Aceptados">
         </div>
     </div>
+
+    <form class="form">
+        <div class="row">
+          <div class="six columns">
+            <label for="exampleEmailInput">Correo electrónico</label>
+            <input class="u-full-width" type="email" placeholder="tuemail@gmail.com" id="exampleEmailInput">
+          </div>
+          <div class="six columns">
+            <label for="exampleRecipientInput">¿En qué podemos ayudarte?</label>
+            <select class="u-full-width" id="exampleRecipientInput">
+              <option value="Option 1">Dudas</option>
+              <option value="Option 2">Precios</option>
+              <option value="Option 3">Devoluciones</option>
+            </select>
+          </div>
+        </div>
+        <label for="exampleMessage">Mensaje</label>
+        <textarea class="u-full-width" placeholder="Buenas tardes..." id="exampleMessage"></textarea>
+        <label class="example-send-yourself-copy">
+        </label>
+        <input class="a" type="submit" value="Submit">
+      </form>
+
 </body>
 </html>
