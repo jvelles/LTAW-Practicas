@@ -28,6 +28,10 @@ h1 {
     font-family: 'FuenteTitulo', sans-serif;
 }
 
+h2 {
+  font-size: x-large;
+}
+
 .productos {
     display: flex;
     flex-wrap: wrap;
