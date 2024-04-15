@@ -1,0 +1,178 @@
+{
+  "usuarios": [
+    {
+      "nombreUsuario": "root",
+      "nombreReal": "Administrador",
+      "correo": "admin@tienda.com"
+    },
+    {
+      "nombreUsuario": "usuarioNormal",
+      "nombreReal": "Usuario Normal",
+      "correo": "usuario@tienda.com"
+    },
+    {
+      "nombreUsuario": "usuario2",
+      "nombreReal": "Ana López",
+      "correo": "ana.lopez@tienda.com"
+    },
+    {
+      "nombreUsuario": "usuario2",
+      "nombreReal": "Ana López",
+      "correo": "ana.lopez@tienda.com"
+    }
+  ],
+  "productos": [
+    {
+      "categoria": "Procesadores",
+      "items": [
+        {
+          "nombre": "Intel Core i9-13900K",
+          "descripcion": "24 Núcleos (8P + 16E), 32 Hilos | Frecuencia base: 3.0 GHz",
+          "precio": 848,
+          "stock": 10,
+          "imagen": "/images/procesador1.png"
+        },
+        {
+          "nombre": "AMD Ryzen 9 7950X3D",
+          "descripcion": "16 Núcleos, 32 Hilos | Frecuencia base: 3.0 GHz",
+          "precio": 619,
+          "stock": 20,
+          "imagen": "/images/procesador2.png"
+        },
+        {
+          "nombre": "Intel Core i7-14700K",
+          "descripcion": "16 Núcleos (8P + 8E), 24 Hilos | Frecuencia base: 3.4 GHz",
+          "precio": 467,
+          "stock": 15,
+          "imagen": "/images/procesador3.png"
+        },
+        {
+          "nombre": "Intel Core i5-14600K",
+          "descripcion": "10 Núcleos (6P + 4E), 16 Hilos | Frecuencia base: 3.6 GHz",
+          "precio": 354,
+          "stock": 25,
+          "imagen": "/images/procesador4.png"
+        }
+      ]
+    },
+    {
+      "categoria": "Tarjetas Gráficas",
+      "items": [
+        {
+          "nombre": "NVIDIA GeForce RTX 4090",
+          "descripcion": "24 GB GDDR6X | 16384 Núcleos CUDA | Boost: 2.52 GHz",
+          "precio": 2229,
+          "stock": 10,
+          "imagen": "/images/tarjeta-grafica1.png"
+        },
+        {
+          "nombre": "AMD Radeon RX 6800 XT",
+          "descripcion": "16 GB GDDR6 | 4608 Núcleos Stream | Boost: 2.25 GHz",
+          "precio": 1298,
+          "stock": 15,
+          "imagen": "/images/tarjeta-grafica2.png"
+        },
+        {
+          "nombre": "NVIDIA GeForce RTX 4080",
+          "descripcion": "16 GB GDDR6X | 9728 Núcleos CUDA | Boost: 2.51 GHz",
+          "precio": 1149,
+          "stock": 20,
+          "imagen": "/images/tarjeta-grafica3.png"
+        },
+        {
+          "nombre": "NVIDIA GeForce RTX 4070 Ti",
+          "descripcion": "12 GB GDDR6X | 7680 Núcleos CUDA | Boost: 2.61 GHz",
+          "precio": 970,
+          "stock": 25,
+          "imagen": "/images/tarjeta-grafica4.png"
+        }
+      ]
+    },
+    {
+      "categoria": "Tarjetas Memoria RAM",
+      "items": [
+        {
+          "nombre": "Corsair Vengeance RGB",
+          "descripcion": "DDR5 6000MHz PC5-48000 32GB 2x16GB CL36 Negra",
+          "precio": 123,
+          "stock": 30,
+          "imagen": "/images/ram1.png"
+        },
+        {
+          "nombre": "Corsair Vengeance",
+          "descripcion": "DDR5 6400MHz PC5-51200 32GB 2x16GB CL32 Negra",
+          "precio": 149,
+          "stock": 25,
+          "imagen": "/images/ram2.png"
+        },
+        {
+          "nombre": "Team Group T-Force Delta RGB",
+          "descripcion": "DDR5 7600MHz 32GB 2x16GB CL36",
+          "precio": 236,
+          "stock": 20,
+          "imagen": "/images/ram3.png"
+        },
+        {
+          "nombre": "Kingston FURY Beast",
+          "descripcion": "DDR5 5200MHz 32GB 2x16GB CL40",
+          "precio": 354,
+          "stock": 15,
+          "imagen": "/images/ram4.png"
+        }
+      ]
+    },
+    {
+      "categoria": "Refrigeración líquida",
+      "items": [
+        {
+          "nombre": "Corsair iCUE H150i RGB ELITE",
+          "descripcion": "Dimensiones del ventilador 120 mm x 25 mm - Dimensiones del radiador 397 mm x 120 mm x 27 mm",
+          "precio": 176,
+          "stock": 10,
+          "imagen": "/images/Refrigeracion1.png"
+        },
+        {
+          "nombre": "Tempest Liquid Cooler 120 ARGB",
+          "descripcion": "Dimensiones del ventilador: 120 x 120 x25mm - Dimensiones del radiador: 54 x 120 x 27mm",
+          "precio": 75,
+          "stock": 20,
+          "imagen": "/images/Refrigeracion2.png"
+        },
+        {
+          "nombre": "Razer Hanbo ARGB",
+          "descripcion": "Dimensiones del ventilador: 2 x 120mm PWM de 4 pines - Dimensiones del radiador: 275 x 30 x 123 mm",
+          "precio": 274,
+          "stock": 15,
+          "imagen": "/images/Refrigeracion3.png"
+        },
+        {
+          "nombre": "Corsair iCUE LINK H115i RGB AIO",
+          "descripcion": "Dimensiones del ventilador 140 mm x 25 mm - Dimensiones del radiador 277 mm x 140 mm x 27 mm",
+          "precio": 255,
+          "stock": 10,
+          "imagen": "/images/Refrigeracion4.png"
+        }
+      ]
+    }
+  ],
+  "pedidos": [
+    {
+      "nombreUsuario": "usuarioNormal",
+      "direccionEnvio": "Calle Falsa 123, Ciudad, País",
+      "numeroTarjeta": "1234567890123456",
+      "productosComprados": [
+        "Intel Core i9-13900K",
+        "NVIDIA GeForce RTX 4090"
+      ]
+    },
+    {
+      "nombreUsuario": "root",
+      "direccionEnvio": "Avenida Siempre Viva 742, Springfield",
+      "numeroTarjeta": "6543210987654321",
+      "productosComprados": [
+        "Corsair Vengeance RGB",
+        "Razer Hanbo ARGB"
+      ]
+    }
+  ]
+}

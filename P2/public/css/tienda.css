@@ -1,0 +1,247 @@
+.contenedor {
+    text-align: center;
+    width: 80%;
+    max-width: 960px; 
+    margin: 40px auto; 
+}
+
+@font-face {
+    font-family: 'FuenteTitulo'; 
+    src: url('/fuente.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 48px;
+    font-family: 'FuenteTitulo', sans-serif;
+}
+
+h2 {
+  font-size: x-large;
+}
+
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    gap: 20px; /* Espacio entre productos */
+}
+
+.producto {
+    width: 250px;
+    height: 350px;
+    margin: 20px; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    border-radius: 10px; 
+    padding: 20px; 
+    color: white; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    transition: all 0.3s ease; 
+  }
+  
+.producto:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el ratón */
+  }
+
+.producto img {
+    width: auto; 
+    max-height: 120px; 
+    margin-bottom: 15px; 
+  }
+
+.producto h2 {
+    margin: 10px 0; /* Margen arriba y abajo para el título del producto */
+    text-align: center; 
+  }
+  
+ 
+.producto p {
+    text-align: center; 
+    margin-bottom: 15px; /* Margen debajo de la descripción */
+  } 
+
+.producto button {
+    cursor: pointer; /* Cambia el cursor a un puntero para indicar que es clickeable */
+  } 
+
+.producto a {
+    display: inline-block;
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.producto a:hover {
+    background-color: #434a52;
+}
+
+.contenedor-boton {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.contenedor-boton button {
+    background-color: #000000; 
+    color: white; /* Texto blanco */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+}
+
+.contenedor-boton button:hover {
+    background-color: #434a52; /* Azul oscuro al pasar el mouse */
+}
+
+.metodos-pago {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 200px; 
+    z-index: 10;
+}
+
+.metodos-pago h3 {
+    color: #ffffff; 
+    font-size: 1em; 
+    text-align: center;
+    margin: 0 0 5px 0; 
+}
+
+.metodos-pago img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    height: auto;
+  }
+  
+  body {
+    background-image: url('/fondo.jpg'); 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll; 
+    background-size: cover;
+    background-color: #f5f5f5; 
+  }
+  
+  /* Estilos básicos para formulario */
+.form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+  }
+  
+  /* Estilos para las etiquetas de los campos del formulario */
+  .form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #333;
+  }
+  
+  /* Estilo para los campos de entrada */
+  .form input[type="email"],
+  .form select,
+  .form textarea,
+  .form input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Estilo específico para los textos de entrada de texto completo */
+  .form .u-full-width {
+    font-size: 0.95em;
+    line-height: 1.4em;
+    background: #f9f9f9;
+  }
+  
+  /* Estilo para el área de texto */
+  .form textarea {
+    height: 120px;
+  }
+  
+  /* Estilos para el botón de envío */
+  .form .button-primary {
+    display: inline-block;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Cambia el color del botón al pasar el ratón */
+  .form .button-primary:hover {
+    background-color: #555;
+  }
+  
+  /* Estilo para la etiqueta del checkbox */
+  .form .example-send-yourself-copy {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para el texto del checkbox */
+  .form .label-body {
+    margin-left: 8px;
+    color: #333;
+    font-size: 0.9em;
+  }
+  
+  /* Ajustes de responsive design */
+  @media (max-width: 767px) {
+    .forminput[type="email"],
+    .form select,
+    .form textarea,
+    .form input[type="checkbox"] {
+    width: 100%;
+    }
+    
+    .form .row {
+    flex-direction: column;
+    }
+    
+    .form .six.columns {
+    width: 100%;
+    }
+    }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var socket = io();
+            var nickname = prompt("Introduce tu nickname:") || `Usuario${Math.floor(Math.random() * 1000)}`;
+            socket.emit('new user', nickname);
+
+            var form = document.getElementById('form');
+            var input = document.getElementById('input');
+            var messages = document.getElementById('messages');
+            var userList = document.getElementById('user-list');
+            var typingIndicator = document.getElementById('typing');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (input.value) {
+                    socket.emit('chat message', input.value);
+                    input.value = '';
+                }
+            });
+
+            input.addEventListener('input', function() {
+                socket.emit('typing', nickname); // Asegúrate de enviar el nickname
+            });
+
+            socket.on('chat message', function(msg) {
+                addMessage(msg);
+                typingIndicator.textContent = '';
+            });
+
+            socket.on('message', function(msg) {
+                addMessage(msg);
+            });
+
+            socket.on('update user list', function(users) {
+                userList.innerHTML = '';
+                users.forEach(function(user) {
+                    var item = document.createElement('li');
+                    item.textContent = user;
+                    userList.appendChild(item);
+                });
+            });
+
+            socket.on('display typing', function(nickname) {
+                typingIndicator.textContent = `${nickname} está escribiendo...`;
+                clearTimeout(typingIndicator.timeout);
+                typingIndicator.timeout = setTimeout(function() {
+                    typingIndicator.textContent = '';
+                }, 1000);
+            });
+
+            function addMessage(msg) {
+                var item = document.createElement('li');
+                item.textContent = msg;
+                messages.appendChild(item);
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="chat-container">
+        <ul id="messages"></ul>
+        <form id="form" action="">
+            <input id="input" autocomplete="off"><button>Enviar</button>
+        </form>
+        <div id="typing"></div>
+        <h2>Usuarios conectados:</h2>
+        <ul id="user-list"></ul>
+    </div>
+</body>
+</html>
