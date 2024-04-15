@@ -5,6 +5,7 @@
     <title>Chat App</title>
     <link rel="stylesheet" href="styles.css">
     <script src="/socket.io/socket.io.js"></script>
+    <audio id="message-sound" src="notification.mp3" preload="auto"></audio>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var socket = io();
@@ -53,12 +54,13 @@
             });
 
             input.addEventListener('input', function() {
-                socket.emit('typing', nickname); // Asegúrate de enviar el nickname
+                socket.emit('typing', nickname); 
             });
 
             socket.on('chat message', function(msg) {
                 addMessage(msg);
                 typingIndicator.textContent = '';
+                document.getElementById('message-sound').play(); 
             });
 
             socket.on('message', function(msg) {
