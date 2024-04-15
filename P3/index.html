@@ -8,15 +8,42 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var socket = io();
-            var nickname = prompt("Introduce tu nickname:") || `Usuario${Math.floor(Math.random() * 1000)}`;
-            socket.emit('new user', nickname);
 
+            // Referencias al modal, input y botón
+            var modal = document.getElementById('nickname-prompt');
+            var nicknameInput = document.getElementById('nickname-input');
+            var submitButton = document.getElementById('nickname-submit');
+
+            // Mostrar el modal de nickname al cargar
+            modal.style.display = 'block';
+
+            // Función para cerrar el modal y emitir el evento de nuevo usuario
+            function setNickname() {
+                var nickname = nicknameInput.value || `Usuario${Math.floor(Math.random() * 1000)}`;
+                modal.style.display = 'none'; // Ocultar modal
+                socket.emit('new user', nickname); // Emitir nuevo usuario
+            }
+
+            // Evento para el botón de enviar
+            submitButton.onclick = function() {
+                setNickname();
+            };
+
+            // Evento para cuando se presiona enter en el input
+            nicknameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    setNickname();
+                }
+            });
+
+            // Otros elementos y eventos...
             var form = document.getElementById('form');
             var input = document.getElementById('input');
             var messages = document.getElementById('messages');
             var userList = document.getElementById('user-list');
             var typingIndicator = document.getElementById('typing');
 
+           
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (input.value) {
@@ -74,5 +101,16 @@
         <h2>Usuarios conectados:</h2>
         <ul id="user-list"></ul>
     </div>
+
+    <!-- Estilo del prompt personalizado -->
+    <div id="nickname-prompt" class="modal">
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Introduce tu nickname:</p>
+        <input type="text" id="nickname-input" placeholder="Nickname">
+        <button id="nickname-submit">Aceptar</button>
+        </div>
+    </div>
+  
 </body>
 </html>

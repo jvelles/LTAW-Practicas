@@ -3,9 +3,13 @@ const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
 
-// Inicializar servidor y socket.io
+// Crear la aplicación Express
 const app = express();
+
+// Crear un servidor HTTP pasando la aplicación Express
 const server = http.createServer(app);
+
+// Inicializar una nueva instancia de Socket.io pasando el servidor HTTP
 const io = socketIo(server);
 
 // Servir la página principal
@@ -73,7 +77,12 @@ function handleCommands(socket, msg) {
     }
 }
 
+app.use(express.static(__dirname));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 // Iniciar servidor
-server.listen(9090, () => {
-    console.log('Servidor corriendo en http://localhost:9090');
+server.listen(9091, () => {
+    console.log('Servidor corriendo en http://localhost:9091');
 });

@@ -64,3 +64,60 @@ button:hover {
     color: #777;
     font-style: italic;
 }
+
+/* Estilo del fondo oscuro */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo en toda la pantalla */
+    z-index: 1; /* Arriba de todo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho total */
+    height: 100%; /* Alto total */
+    background-color: rgb(0,0,0); /* Fondo negro */
+    background-color: rgba(0,0,0,0.4); /* Fondo negro con opacidad */
+  }
+  
+  /* Estilo del contenido del modal */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% desde arriba y centrado horizontalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Puede ser más o menos, dependiendo de la preferencia */
+  }
+  
+  /* El botón cerrar (x) */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* El input del nickname y el botón */
+  #nickname-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  #nickname-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #nickname-submit:hover {
+    background-color: #4cae4c;
+  }
