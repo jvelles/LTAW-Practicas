@@ -24,9 +24,15 @@ let users = {};
 io.on('connection', (socket) => {
     console.log('Nuevo usuario conectado');
 
+     // Emitir bienvenida solo al usuario que se conecta
+     socket.emit('message', 'Bienvenido al chat!');
+
     // Enviar bienvenida al usuario
     socket.on('new user', (nickname) => {
         users[socket.id] = nickname;
+     // Emitir solo al socket que se acaba de conectar
+        socket.emit('message', 'Te has unido al chat.');
+    // Emitir a todos los demás usuarios
         socket.broadcast.emit('message', `${nickname} se ha unido al chat`);
         io.emit('update user list', Object.values(users));
     });
