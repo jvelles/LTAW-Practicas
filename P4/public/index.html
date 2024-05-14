@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="renderer.js" defer></script>
+</head>
+<body>
+    <h1>HOME CHAT (Server)</h1>
+    <div id="info">
+        <h2>Información</h2>
+        <p>Versión de Node: <span id="node-version"></span></p>
+        <p>Versión de Chrome: <span id="chrome-version"></span></p>
+        <p>Versión de Electron: <span id="electron-version"></span></p>
+        <p>Usuarios conectados: <span id="user-count"></span></p>
+        <p>Dirección IP: <span id="ip-address"></span></p>
+        <p>URL del Chat: <a id="chat-url" href="#" target="_blank"></a></p>
+    </div>
+    <div id="test">
+        <h2>Pruebas</h2>
+        <button id="test-button">Enviar Mensaje de prueba</button>
+    </div>
+    <div id="messages">
+        <h2>Mensajes</h2>
+        <ul id="message-list"></ul>
+    </div>
+</body>
+</html>

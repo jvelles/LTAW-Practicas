@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var userList = document.getElementById('user-list');
     var typingIndicator = document.getElementById('typing');
 
-   
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {

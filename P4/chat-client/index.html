@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Chat App</title>
-    <link rel="stylesheet" href="styles-chat.css">
-    <script src="client-chat.js" defer></script>
+    <title>Chat Client</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="client.js" defer></script>
     <script src="/socket.io/socket.io.js"></script>
     <audio id="message-sound" src="notification.mp3" preload="auto"></audio>
 </head>
@@ -19,15 +19,13 @@
         <ul id="user-list"></ul>
     </div>
 
-    <!-- Estilo del prompt personalizado -->
     <div id="nickname-prompt" class="modal">
         <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Introduce tu nickname:</p>
-        <input type="text" id="nickname-input" placeholder="Nickname">
-        <button id="nickname-submit">Aceptar</button>
+            <span class="close">&times;</span>
+            <p>Introduce tu nickname:</p>
+            <input type="text" id="nickname-input" placeholder="Nickname">
+            <button id="nickname-submit">Aceptar</button>
         </div>
     </div>
-  
 </body>
 </html>

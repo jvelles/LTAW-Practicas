@@ -1,149 +1,131 @@
-//-- Cargar el módulo de electron
-const electron = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path');
+const os = require('os');
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
 
-console.log("Arrancando electron...");
+// Configuración del servidor Express y Socket.io
+const expressApp = express();
+const server = http.createServer(expressApp);
+const io = socketIo(server);
 
-//-- Variable para acceder a la ventana principal
-//-- Se pone aquí para que sea global al módulo principal
+function getIPAddress() {
+    const interfaces = os.networkInterfaces();
+    for (const name of Object.keys(interfaces)) {
+        for (const net of interfaces[name]) {
+            if (net.family === 'IPv4' && !net.internal) {
+                return net.address;
+            }
+        }
+    }
+}
 
+let users = {};
+let messages = [];
 
-//-- Punto de entrada. En cuanto electron está listo,
-//-- ejecuta esta función
-electron.app.on('ready', () => {
-    console.log("Evento Ready!");
+io.on('connection', (socket) => {
+    console.log('Nuevo usuario conectado');
 
-    //-- Crear la ventana principal de nuestra aplicación
-    win = new electron.BrowserWindow({
-        width: 1500,   //-- Anchura 
-        height: 1000,  //-- Altura
+    socket.emit('message', 'Bienvenido al chat!');
 
-        //-- Permitir que la ventana tenga ACCESO AL SISTEMA
-        webPreferences: {
-          nodeIntegration: true,
-          contextIsolation: false
+    socket.on('new user', (nickname) => {
+        users[socket.id] = nickname;
+        socket.emit('message', 'Te has unido al chat.');
+        socket.broadcast.emit('message', `${nickname} se ha unido al chat`);
+        io.emit('update user list', Object.values(users));
+        updateRenderer();
+    });
+
+    socket.on('chat message', (msg) => {
+        const message = `${users[socket.id]}: ${msg}`;
+        messages.push(message);
+        io.emit('chat message', message);
+        updateRenderer();
+    });
+
+    socket.on('typing', () => {
+        socket.broadcast.emit('display typing', users[socket.id]);
+    });
+
+    socket.on('disconnect', () => {
+        if (users[socket.id]) {
+            io.emit('message', `${users[socket.id]} se ha desconectado.`);
+            delete users[socket.id];
+            io.emit('update user list', Object.values(users));
+            updateRenderer();
         }
     });
 
-  //-- En la parte superior se nos ha creado el menu
-  //-- por defecto
-  //-- Si lo queremos quitar, hay que añadir esta línea
-  //win.setMenuBarVisibility(false)
-
-  //-- Cargar contenido web en la ventana
-  //-- La ventana es en realidad.... ¡un navegador!
-  //win.loadURL('https://www.urjc.es/etsit');
-
-  //-- Cargar interfaz gráfica en HTML
-  win.loadFile("index.html");
-
-  //-- Esperar a que la página se cargue y se muestre
-  //-- y luego enviar el mensaje al proceso de renderizado para que 
-  //-- lo saque por la interfaz gráfica
-  win.on('ready-to-show', () => {
-    win.webContents.send('ip', 'http://' + ip.address() + ':' + PUERTO);
-  });
-
-  electron.ipcMain.handle("btn_test", async(event, mensaje) => {
-    console.log(mensaje);
-    io.send("Hola a todos", mensaje);
-    win.webContents.send("recibiendo", "Holaaaaaaaaaaaaa");
-  }
-  )
+    function updateRenderer() {
+        const window = BrowserWindow.getAllWindows()[0];
+        if (window) {
+            window.webContents.send('update', {
+                users: Object.values(users),
+                messages: messages
+            });
+        }
+    }
 });
 
-
-
-
-//-- Cargar las dependencias
-const socket = require('socket.io');
-const http = require('http');
-const express = require('express');
-const colors = require('colors');
-const ip = require('ip');
-
-const PUERTO = 9000;
-
-//-- Crear una nueva aplciacion web
-const app = express();
-
-//-- Crear un servidor, asosiaco a la App de express
-const server = http.Server(app);
-
-//-- Crear el servidor de websockets, asociado al servidor http
-const io = socket(server);
-
-//-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
-//-- Definir el punto de entrada principal de mi aplicación web
-app.get('/', (req, res) => {
-  res.send('Bienvenido a mi Chat!!!' + '<p><a href="/chat.html">Entrar al Chat</a></p>');
+// Servir los archivos estáticos del cliente de chat
+expressApp.use('/chat', express.static(path.join(__dirname, 'chat-client')));
+expressApp.use(express.static(path.join(__dirname, 'public')));
+expressApp.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-//-- Esto es necesario para que el servidor le envíe al cliente la
-//-- biblioteca socket.io para el cliente
-app.use('/', express.static(__dirname +'/'));
+function createWindow() {
+    const mainWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            preload: path.join(__dirname, 'renderer.js'),
+            contextIsolation: false,
+            enableRemoteModule: true,
+            nodeIntegration: true
+        }
+    });
 
-//-- El directorio publico contiene ficheros estáticos
-app.use(express.static('public'));
+    mainWindow.loadFile(path.join(__dirname, 'public', 'index.html'));
 
-//------------------- GESTION SOCKETS IO
-//-- Evento: Nueva conexion recibida
-io.on('connect', (socket) => {
-  
-  console.log('** NUEVO USUARIO CONECTADO **'.yellow);
+    mainWindow.webContents.openDevTools();
 
-  win.webContents.send("numeroclientes",io.engine.clientsCount);
+    mainWindow.webContents.on('did-finish-load', () => {
+        const ip = getIPAddress();
+        const chatUrl = `http://${ip}:9091/chat`;
 
-  //-- Evento de desconexión
-  socket.on('disconnect', function(){
-    console.log('** USUARIO DESCONECTADO **'.yellow);
+        mainWindow.webContents.send('info', {
+            nodeVersion: process.versions.node,
+            chromeVersion: process.versions.chrome,
+            electronVersion: process.versions.electron,
+            ip: ip,
+            chatUrl: chatUrl,
+            users: Object.values(users),
+            messages: messages
+        });
+    });
 
-    win.webContents.send("numeroclientes",io.engine.clientsCount);
-  
-  });  
-
-  //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
-  socket.on("message", (msg)=> {
-    console.log(`Mensaje recibido!:` + msg.blue);
-    const command = msg.split("/")[1];
-
-switch (command) {
-  case 'help':
-    socket.send("Comandos soportados : /hello, /list, /hour y /date");
-    break;
-
-  case 'hello':
-    socket.send('Bienvenido al chat!!!!');
-  break;
-
-  case 'list':
-    const users = 'Número de usuarios conectados: ' + io.engine.clientsCount;
-    socket.send(users);
-    break;
-
-  case 'hour':
-    const currentTime = new Date();
-    const timeString = 'Son las: ' + currentTime.toLocaleTimeString();
-    socket.send(timeString);
-  break;
-
-  case 'date':
-    const currentDate = new Date();
-    const dateString = 'Hoy es: ' + currentDate.toLocaleDateString();
-    socket.send(dateString);
-    break;
-
-  default:
-    io.send(msg);
-    break;
-    win.webContents.send("recibiendo", msg);
+    ipcMain.on('send-test-message', (event, message) => {
+        io.emit('chat message', `Servidor: ${message}`);
+    });
 }
-  });
 
+app.on('ready', () => {
+    createWindow();
+    server.listen(9091, () => {
+        console.log('Servidor corriendo en http://localhost:9091');
+    });
 });
 
-//-- Lanzar el servidor HTTP
-//-- ¡Que empiecen los juegos de los WebSockets!
-server.listen(PUERTO);
-console.log("Escuchando en puerto: " + PUERTO);
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
 
-
+app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+    }
+});

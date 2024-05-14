@@ -1,17 +1,14 @@
 {
-  "name": "electron-chat",
+  "name": "my-chat-app",
   "version": "1.0.0",
-  "description": "Chat application",
-  "main": "src/main.js",
+  "description": "Chat app with Electron",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "dependencies": {
-    "colors": "^1.4.0",
-    "electron": "latest",
+    "electron": "^XX.XX.X",
     "express": "^4.17.1",
-    "ip": "^2.0.1",
-    "socket.io": "^2.3.0",
-    "websocket": "^1.0.34"
+    "socket.io": "^4.1.3"
   }
 }
