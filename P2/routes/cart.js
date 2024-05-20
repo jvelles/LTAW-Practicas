@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getProducts } = require('../models/product');
+const { getProducts, saveProducts } = require('../models/product');
 const { getOrders, saveOrders } = require('../models/order');
 
 // Mostrar la página de finalización de compra
@@ -35,6 +35,17 @@ router.post('/add', (req, res) => {
     const { productId } = req.body;
     const products = getProducts();
     const product = products.find(p => p.id == productId);
+
+    if (!product) {
+        return res.redirect('/');
+    }
+
+    if (product.stock <= 0) {
+        return res.redirect('/');
+    }
+
+    product.stock -= 1;
+    saveProducts(products);
 
     if (!req.session.cart) {
         req.session.cart = [];

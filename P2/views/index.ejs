@@ -29,10 +29,15 @@
                     <h2><%= product.name %></h2>
                     <p><%= product.description %></p>
                     <p>Precio: <%= product.price %> €</p>
-                    <form action="/cart/add" method="post"> <!-- Verifica que esta línea esté correcta -->
-                        <input type="hidden" name="productId" value="<%= product.id %>">
-                        <button type="submit">Añadir al carrito</button>
-                    </form>
+                    <p>Stock: <%= product.stock %></p>
+                    <% if (product.stock > 0) { %>
+                        <form action="/cart/add" method="post">
+                            <input type="hidden" name="productId" value="<%= product.id %>">
+                            <button type="submit">Añadir al carrito</button>
+                        </form>
+                    <% } else { %>
+                        <p>Producto agotado</p>
+                    <% } %>
                 </div>
             <% }) %>
         </div>

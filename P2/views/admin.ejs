@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" href="/css/tienda.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Administrar Productos</h1>
+        <% if (user === 'root') { %>
+            <form action="/admin/add-product" method="post">
+                <label for="name">Nombre del Producto</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="description">Descripción</label>
+                <textarea id="description" name="description" required></textarea>
+                
+                <label for="price">Precio</label>
+                <input type="number" id="price" name="price" required>
+                
+                <label for="stock">Stock</label>
+                <input type="number" id="stock" name="stock" required>
+                
+                <label for="image">URL de la Imagen</label>
+                <input type="text" id="image" name="image" required>
+                
+                <button type="submit">Añadir Producto</button>
+            </form>
+        <% } else { %>
+            <p>No tienes permisos para acceder a esta página.</p>
+        <% } %>
+    </div>
+</body>
+</html>

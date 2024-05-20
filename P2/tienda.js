@@ -39,10 +39,12 @@ app.get('/', (req, res) => {
 const userRoutes = require('./routes/user');
 const productRoutes = require('./routes/product');
 const cartRoutes = require('./routes/cart');
+const adminRoutes = require('./routes/admin');
 
 app.use('/user', userRoutes);
 app.use('/product', productRoutes);
 app.use('/cart', cartRoutes);
+app.use('/admin', adminRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor ejecutándose en http://localhost:${port}`);
