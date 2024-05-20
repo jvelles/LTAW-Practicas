@@ -3,14 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="/css/tienda.css">
 </head>
 <body>
-    <h2>Login</h2>
-    <form action="/login" method="post">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <input type="submit" value="Login">
-    </form>
+    <div class="contenedor">
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="nombre">Nombre de usuario</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <button type="submit">Login</button>
+        </form>
+        <div id="mensaje"></div>
+    </div>
+
+    <script>
+      document.getElementById('login-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const nombre = document.getElementById('nombre').value;
+        fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ nombre })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.usuario) {
+            localStorage.setItem('usuario', JSON.stringify(data.usuario));
+            window.location.href = '/';
+          } else {
+            document.getElementById('mensaje').innerText = 'Usuario no encontrado';
+          }
+        });
+      });
+    </script>
 </body>
 </html>

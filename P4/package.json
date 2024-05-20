@@ -1,14 +1,20 @@
 {
   "name": "my-chat-app",
   "version": "1.0.0",
-  "description": "Chat app with Electron",
+  "description": "Chat app using Electron",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "dependencies": {
-    "electron": "^XX.XX.X",
     "express": "^4.17.1",
-    "socket.io": "^4.1.3"
-  }
+    "http": "0.0.0",
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.0.0"
+  },
+  "devDependencies": {
+    "electron": "^12.0.0"
+  },
+  "author": "Me",
+  "license": "ISC"
 }

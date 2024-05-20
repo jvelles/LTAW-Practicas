@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Procesar Pedido</title>
+    <link rel="stylesheet" href="/css/tienda.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Procesar Pedido</h1>
+        <div id="carrito"></div>
+        <form id="pedido-form">
+            <label for="direccion">Dirección de envío</label>
+            <input type="text" id="direccion" name="direccion" required>
+            <label for="tarjeta">Número de tarjeta</label>
+            <input type="text" id="tarjeta" name="tarjeta" required>
+            <button type="submit">Finalizar compra</button>
+        </form>
+        <div id="mensaje"></div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        const carritoDiv = document.getElementById('carrito');
+        carritoDiv.innerHTML = carrito.map(producto => `<p>${producto}</p>`).join('');
+      });
+
+      document.getElementById('pedido-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const usuario = JSON.parse(localStorage.getItem('usuario'));
+        if (!usuario) {
+          alert('Debes iniciar sesión para realizar un pedido');
+          window.location.href = '/views/login.html';
+          return;
+        }
+        const direccion = document.getElementById('direccion').value;
+        const tarjeta = document.getElementById('tarjeta').value;
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        fetch('/api/pedido', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            nombre_usuario: usuario.nombre,
+            direccion,
+            tarjeta,
+            productos: carrito
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.message) {
+            localStorage.removeItem('carrito');
+            document.getElementById('mensaje').innerText = 'Pedido realizado con éxito';
+          } else {
+            document.getElementById('mensaje').innerText = 'Error al realizar el pedido';
+          }
+        });
+      });
+    </script>
+</body>
+</html>

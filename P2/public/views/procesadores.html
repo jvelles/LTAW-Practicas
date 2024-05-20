@@ -9,44 +9,47 @@
     <div class="contenedor">
         <h1>Procesadores - TOP 4</h1>
         <div class="productos">
-            <!-- Procesador Opción 1 -->
             <div class="producto">
-                <img src="/images/procesador1.png" alt="Intel Core i9-13900K">
-                <h2>Intel Core i9-13900K</h2>
-                <p>24 Núcleos (8P + 16E), 32 Hilos | Frecuencia base: 3.0 GHz</p>
-                <p>Precio: 848€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/procesador1.png" alt="Procesador 1">
+                <h2>Procesador 1</h2>
+                <p>Alto rendimiento y eficiencia energética.</p>
+                <p>Precio: 300€</p>
+                <button onclick="addToCart('Procesador 1')">Añadir al carrito</button>
             </div>
-            <!-- Procesador Opción 2 -->
             <div class="producto">
-                <img src="/images/procesador2.png" alt="AMD Ryzen 9 7950X3D">
-                <h2>AMD Ryzen 9 7950X3D</h2>
-                <p>16 Núcleos, 32 Hilos | Frecuencia base: 3.0 GHz</p>
-                <p>Precio: 619€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/procesador2.png" alt="Procesador 2">
+                <h2>Procesador 2</h2>
+                <p>Potencia y velocidad para cualquier tarea.</p>
+                <p>Precio: 400€</p>
+                <button onclick="addToCart('Procesador 2')">Añadir al carrito</button>
             </div>
-            <!-- Procesador Opción 3 -->
             <div class="producto">
-                <img src="/images/procesador3.png" alt="Intel Core i7-14700K ">
-                <h2>Intel Core i7-14700K </h2>
-                <p>16 Núcleos (8P + 8E), 24 Hilos | Frecuencia base: 3.4 GHz</p>
-                <p>Precio: 467€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/procesador3.png" alt="Procesador 3">
+                <h2>Procesador 3</h2>
+                <p>Optimizado para juegos y multitarea.</p>
+                <p>Precio: 500€</p>
+                <button onclick="addToCart('Procesador 3')">Añadir al carrito</button>
             </div>
-            <!-- Procesador Opción 4 -->
             <div class="producto">
-                <img src="/images/procesador4.png" alt="Intel Core i5-14600K">
-                <h2>Intel Core i5-14600K</h2>
-                <p>10 Núcleos (6P + 4E), 16 Hilos | Frecuencia base: 3.6 GHz</p>
-                <p>Precio: 354€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/procesador4.png" alt="Procesador 4">
+                <h2>Procesador 4</h2>
+                <p>La mejor elección para profesionales.</p>
+                <p>Precio: 600€</p>
+                <button onclick="addToCart('Procesador 4')">Añadir al carrito</button>
             </div>
         </div>
-
         <div class="contenedor-boton">
             <button onclick="history.back()">Volver</button>
         </div>
     </div>
 
+    <script>
+      function addToCart(nombreProducto) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carrito.push(nombreProducto);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        alert('Producto añadido al carrito');
+      }
+    </script>
 </body>
 </html>

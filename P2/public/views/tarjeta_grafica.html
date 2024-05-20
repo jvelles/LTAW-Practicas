@@ -4,51 +4,52 @@
     <meta charset="UTF-8">
     <title>Tarjeta Gráfica</title>
     <link rel="stylesheet" href="/css/tienda.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="contenedor">
         <h1>Tarjeta Gráfica - TOP 4</h1>
         <div class="productos">
-            <!-- NVIDIA GeForce RTX 4090 -->
             <div class="producto">
-                <img src="/images/tarjeta-grafica1.png" alt="NVIDIA GeForce RTX 4090">
-                <h2>NVIDIA GeForce RTX 4090</h2>
-                <p>24 GB GDDR6X | 16384 Núcleos CUDA | Boost: 2.52 GHz</p>
-                <p>Precio: 2.229€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/tarjeta-grafica1.png" alt="Tarjeta Gráfica 1">
+                <h2>Tarjeta Gráfica 1</h2>
+                <p>La última tecnología en gráficos para tu PC.</p>
+                <p>Precio: 500€</p>
+                <button onclick="addToCart('Tarjeta Gráfica 1')">Añadir al carrito</button>
             </div>
-            <!-- AMD Radeon RX 6800 XT -->
             <div class="producto">
-                <img src="/images/tarjeta-grafica2.png"" alt="AMD Radeon RX 6800 XT">
-                <h2>AMD Radeon RX 6800 XT</h2>
-                <p>16 GB GDDR6 | 4608 Núcleos Stream | Boost: 2.25 GHz</p>
-                <p>Precio: 1.298€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/tarjeta-grafica2.png" alt="Tarjeta Gráfica 2">
+                <h2>Tarjeta Gráfica 2</h2>
+                <p>Increíble rendimiento y gráficos realistas.</p>
+                <p>Precio: 600€</p>
+                <button onclick="addToCart('Tarjeta Gráfica 2')">Añadir al carrito</button>
             </div>
-            <!-- NVIDIA GeForce RTX 4080 -->
             <div class="producto">
-                <img src="/images/tarjeta-grafica3.png"" alt="NVIDIA GeForce RTX 4080">
-                <h2>NVIDIA GeForce RTX 4080</h2>
-                <p>16 GB GDDR6X | 9728 Núcleos CUDA | Boost: 2.51 GHz</p>
-                <p>Precio: 1.149€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/tarjeta-grafica3.png" alt="Tarjeta Gráfica 3">
+                <h2>Tarjeta Gráfica 3</h2>
+                <p>Experiencia de juego fluida y rápida.</p>
+                <p>Precio: 700€</p>
+                <button onclick="addToCart('Tarjeta Gráfica 3')">Añadir al carrito</button>
             </div>
-            <!-- NVIDIA GeForce RTX 4070 Ti -->
             <div class="producto">
-                <img src="/images/tarjeta-grafica4.png" alt="NVIDIA GeForce RTX 4070 Ti">
-                <h2>NVIDIA GeForce RTX 4070 Ti</h2>
-                <p>12 GB GDDR6X | 7680 Núcleos CUDA | Boost: 2.61 GHz</p>
-                <p>Precio: 970€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/tarjeta-grafica4.png" alt="Tarjeta Gráfica 4">
+                <h2>Tarjeta Gráfica 4</h2>
+                <p>Gráficos de alta calidad y eficiencia energética.</p>
+                <p>Precio: 800€</p>
+                <button onclick="addToCart('Tarjeta Gráfica 4')">Añadir al carrito</button>
             </div>
         </div>
-
         <div class="contenedor-boton">
             <button onclick="history.back()">Volver</button>
         </div>
-        
     </div>
 
+    <script>
+      function addToCart(nombreProducto) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carrito.push(nombreProducto);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        alert('Producto añadido al carrito');
+      }
+    </script>
 </body>
 </html>

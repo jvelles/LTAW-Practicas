@@ -4,50 +4,52 @@
     <meta charset="UTF-8">
     <title>Tarjetas Memoria RAM</title>
     <link rel="stylesheet" href="/css/tienda.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="contenedor">
         <h1>Tarjetas Memoria RAM - TOP 4</h1>
         <div class="productos">
-            <!-- RAM Opción 1 -->
             <div class="producto">
-                <img src="/images/ram1.png" alt="Corsair Vengeance RGB">
-                <h2>Corsair Vengeance RGB</h2>
-                <p>DDR5 6000MHz PC5-48000 32GB 2x16GB CL36 Negra</p>
-                <p>Precio: 123€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/tarjeta-ram1.png" alt="Tarjeta RAM 1">
+                <h2>Tarjeta RAM 1</h2>
+                <p>Mejora la velocidad y el rendimiento de tu PC.</p>
+                <p>Precio: 150€</p>
+                <button onclick="addToCart('Tarjeta RAM 1')">Añadir al carrito</button>
             </div>
-            <!-- RAM Opción 2 -->
             <div class="producto">
-                <img src="/images/ram2.png" alt="Corsair Vengeance">
-                <h2>Corsair Vengeance</h2>
-                <p>DDR5 6400MHz PC5-51200 32GB 2x16GB CL32 Negra</p>
-                <p>Precio: 149€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/tarjeta-ram2.png" alt="Tarjeta RAM 2">
+                <h2>Tarjeta RAM 2</h2>
+                <p>Memoria rápida y eficiente.</p>
+                <p>Precio: 200€</p>
+                <button onclick="addToCart('Tarjeta RAM 2')">Añadir al carrito</button>
             </div>
-            <!-- RAM Opción 3 -->
             <div class="producto">
-                <img src="/images/ram3.png" alt="Team Group T-Force Delta RGB ">
-                <h2>Team Group T-Force Delta RGB </h2>
-                <p>DDR5 7600MHz 32GB 2x16GB CL36</p>
-                <p>Precio: 236€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/tarjeta-ram3.png" alt="Tarjeta RAM 3">
+                <h2>Tarjeta RAM 3</h2>
+                <p>Ideal para multitarea y gaming.</p>
+                <p>Precio: 250€</p>
+                <button onclick="addToCart('Tarjeta RAM 3')">Añadir al carrito</button>
             </div>
-            <!-- RAM Opción 4 -->
             <div class="producto">
-                <img src="/images/ram4.png" alt="Kingston FURY Beast">
-                <h2>Kingston FURY Beast</h2>
-                <p>DDR5 5200MHz 32GB 2x16GB CL40</p>
-                <p>Precio: 354€</p>
-                <a href="/add-to-cart?product=IntelCorei9">Añadir al Carrito</a>
+                <img src="/images/tarjeta-ram4.png" alt="Tarjeta RAM 4">
+                <h2>Tarjeta RAM 4</h2>
+                <p>Rendimiento superior y estabilidad.</p>
+                <p>Precio: 300€</p>
+                <button onclick="addToCart('Tarjeta RAM 4')">Añadir al carrito</button>
             </div>
         </div>
-
         <div class="contenedor-boton">
             <button onclick="history.back()">Volver</button>
         </div>
     </div>
 
+    <script>
+      function addToCart(nombreProducto) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carrito.push(nombreProducto);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        alert('Producto añadido al carrito');
+      }
+    </script>
 </body>
 </html>

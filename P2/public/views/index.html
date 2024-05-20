@@ -7,63 +7,27 @@
     <link rel="stylesheet" href="/css/tienda.css">
 </head>
 <body>
-
     <div class="contenedor">
         <h1>LOS MEJORES COMPONENTES DEL MERCADO</h1>
-    <div class="productos">
-        <div class="producto">
-            <img src="/images/tarjeta-grafica1.png" alt="Tarjeta Gráfica">
-            <h2>Tarjeta Gráfica</h2>
-            <p>La última tecnología en gráficos para tu PC.</p>
-            <a href="/views/tarjeta_grafica.html">Ver más</a>
 
-        </div>
-        <div class="producto">
-            <img src="/images/procesador.png" alt="Procesador">
-            <h2>Procesador</h2>
-            <p>Alto rendimiento y eficiencia energética.</p>
-            <a href="/views/procesadores.html">Ver más</a>
-        </div>
-        <div class="producto">
-            <img src="/images/tarjeta-ram.png" alt="Tarjeta RAM">
-            <h2>Tarjeta RAM</h2>
-            <p>Mejora la velocidad y el rendimiento de tu PC.</p>
-            <a href="/views/tarjeta_ram.html">Ver más</a>
-        </div>
-        <div class="producto">
-            <img src="/images/ventiladores.png" alt="Ventiladores de PC">
-            <h2>Ventiladores de PC</h2>
-            <p>Mantén tu sistema fresco y en funcionamiento óptimo.</p>
-            <a href="/views/ventiladores.html">Ver más</a>
+        <div class="menu">
+            <a href="/views/login.html">Login</a>
         </div>
 
+        <form id="search-form">
+            <input type="text" id="search-box" placeholder="Buscar producto...">
+            <button type="submit">Buscar</button>
+        </form>
+        <ul id="search-results" style="list-style: none; padding: 0;"></ul>
+
+        <div id="productos" class="productos"></div>
+        
         <div class="metodos-pago">
             <h3>Métodos de Pago Aceptados</h3>
-            <img src="images/pagos.png" alt="Métodos de Pago Aceptados">
+            <img src="/images/pagos.png" alt="Métodos de Pago Aceptados">
         </div>
     </div>
 
-    <form class="form">
-        <div class="row">
-          <div class="six columns">
-            <label for="exampleEmailInput">Correo electrónico</label>
-            <input class="u-full-width" type="email" placeholder="tuemail@gmail.com" id="exampleEmailInput">
-          </div>
-          <div class="six columns">
-            <label for="exampleRecipientInput">¿En qué podemos ayudarte?</label>
-            <select class="u-full-width" id="exampleRecipientInput">
-              <option value="Option 1">Dudas</option>
-              <option value="Option 2">Precios</option>
-              <option value="Option 3">Devoluciones</option>
-            </select>
-          </div>
-        </div>
-        <label for="exampleMessage">Mensaje</label>
-        <textarea class="u-full-width" placeholder="Buenas tardes..." id="exampleMessage"></textarea>
-        <label class="example-send-yourself-copy">
-        </label>
-        <input class="a" type="submit" value="Submit">
-      </form>
-
+    <script src="/js/script.js"></script>
 </body>
 </html>

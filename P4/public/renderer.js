@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
         chatUrlElement.href = data.chatUrl;
         document.getElementById('user-count').textContent = data.users.length;
 
+        // Añade el código QR a la interfaz
+        const qrCodeElement = document.getElementById('qr-code');
+        qrCodeElement.src = data.qrCodeUrl;
+
         updateMessages(data.messages);
         updateUserList(data.users);
     });

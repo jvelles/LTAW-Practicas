@@ -4,6 +4,7 @@ const os = require('os');
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
+const QRCode = require('qrcode'); // Importa la librería QRCode
 
 // Configuración del servidor Express y Socket.io
 const expressApp = express();
@@ -19,10 +20,21 @@ function getIPAddress() {
             }
         }
     }
+    return '127.0.0.1'; // Default fallback IP
 }
 
 let users = {};
 let messages = [];
+
+function updateRenderer() {
+    const window = BrowserWindow.getAllWindows()[0];
+    if (window) {
+        window.webContents.send('update', {
+            users: Object.values(users),
+            messages: messages
+        });
+    }
+}
 
 io.on('connection', (socket) => {
     console.log('Nuevo usuario conectado');
@@ -56,16 +68,6 @@ io.on('connection', (socket) => {
             updateRenderer();
         }
     });
-
-    function updateRenderer() {
-        const window = BrowserWindow.getAllWindows()[0];
-        if (window) {
-            window.webContents.send('update', {
-                users: Object.values(users),
-                messages: messages
-            });
-        }
-    }
 });
 
 // Servir los archivos estáticos del cliente de chat
@@ -80,7 +82,7 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'renderer.js'),
+            preload: path.join(__dirname, 'public', 'renderer.js'), // Asegúrate de que la ruta es correcta
             contextIsolation: false,
             enableRemoteModule: true,
             nodeIntegration: true
@@ -91,9 +93,12 @@ function createWindow() {
 
     mainWindow.webContents.openDevTools();
 
-    mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.on('did-finish-load', async () => {
         const ip = getIPAddress();
         const chatUrl = `http://${ip}:9091/chat`;
+
+        // Genera el código QR
+        const qrCodeUrl = await QRCode.toDataURL(chatUrl);
 
         mainWindow.webContents.send('info', {
             nodeVersion: process.versions.node,
@@ -101,13 +106,19 @@ function createWindow() {
             electronVersion: process.versions.electron,
             ip: ip,
             chatUrl: chatUrl,
+            qrCodeUrl: qrCodeUrl, // Envia el código QR al renderizador
             users: Object.values(users),
             messages: messages
         });
     });
 
+    // Asegúrate de eliminar cualquier escucha duplicada
+    ipcMain.removeAllListeners('send-test-message');
     ipcMain.on('send-test-message', (event, message) => {
-        io.emit('chat message', `Servidor: ${message}`);
+        const testMessage = `Servidor: ${message}`;
+        messages.push(testMessage);
+        io.emit('chat message', testMessage);
+        updateRenderer();
     });
 }
 
