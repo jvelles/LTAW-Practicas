@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación de Pedido</title>
+    <link rel="stylesheet" href="/css/tienda.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Confirmación de Pedido</h1>
+        <p>Gracias por su compra, <%= order.username %>!</p>
+        <p>Su pedido ha sido procesado con éxito.</p>
+        <h2>Detalles del Pedido</h2>
+        <p>Dirección de Envío: <%= order.address %></p>
+        <h3>Productos</h3>
+        <ul>
+            <% order.products.forEach(product => { %>
+                <li><%= product.name %> - <%= product.price %> €</li>
+            <% }) %>
+        </ul>
+        <a href="/">Volver a la tienda</a>
+    </div>
+</body>
+</html>

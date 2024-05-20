@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title><%= product.name %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="/css/tienda.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1><%= product.name %></h1>
+        <% if (user) { %>
+            <div class="usuario-registrado">
+                <p>Usuario registrado: <%= user %></p>
+                <a href="/user/logout">Cerrar sesión</a>
+            </div>
+        <% } else { %>
+            <a href="/user/login">Login</a>
+        <% } %>
+        <div class="producto-detalle">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+            <h2><%= product.name %></h2>
+            <p><%= product.description %></p>
+            <p>Precio: <%= product.price %> €</p>
+            <form action="/cart/add" method="post">
+                <input type="hidden" name="productId" value="<%= product.id %>">
+                <button type="submit">Añadir al carrito</button>
+            </form>
+        </div>
+        <button onclick="window.history.back()">Volver</button>
+    </div>
+</body>
+</html>

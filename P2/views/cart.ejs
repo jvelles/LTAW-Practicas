@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito de la Compra</title>
+    <link rel="stylesheet" href="/css/tienda.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Carrito de la Compra</h1>
+        <% if (cart.length > 0) { %>
+            <ul>
+                <% cart.forEach(product => { %>
+                    <li><%= product.name %> - <%= product.price %> €</li>
+                <% }) %>
+            </ul>
+            <form action="/cart/checkout" method="get">
+                <button type="submit">Finalizar Compra</button>
+            </form>
+        <% } else { %>
+            <p>El carrito está vacío</p>
+        <% } %>
+    </div>
+</body>
+</html>

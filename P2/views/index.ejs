@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Componentes de Ordenador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="/css/tienda.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>LOS MEJORES COMPONENTES DEL MERCADO</h1>
+        <% if (user) { %>
+            <div class="usuario-registrado">
+                <p>Usuario registrado: <%= user %></p>
+                <a href="/user/logout">Cerrar sesión</a>
+            </div>
+        <% } else { %>
+            <a href="/user/login">Login</a>
+        <% } %>
+        <form id="search-form" action="/product/search" method="get">
+            <input type="text" id="search-input" name="q" placeholder="Buscar producto..." autocomplete="off">
+            <button type="submit">Buscar</button>
+            <div id="suggestions"></div>
+        </form>
+        <div class="productos">
+            <% products.forEach(product => { %>
+                <div class="producto">
+                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                    <h2><%= product.name %></h2>
+                    <p><%= product.description %></p>
+                    <p>Precio: <%= product.price %> €</p>
+                    <form action="/cart/add" method="post"> <!-- Verifica que esta línea esté correcta -->
+                        <input type="hidden" name="productId" value="<%= product.id %>">
+                        <button type="submit">Añadir al carrito</button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <script src="/js/autocomplete.js"></script>
+</body>
+</html>

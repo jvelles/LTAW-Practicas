@@ -54,6 +54,12 @@ h2 {
   transition: all 0.3s ease;
 }
 
+
+ul {
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
 .producto:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
@@ -232,3 +238,51 @@ body {
       width: 100%;
   }
 }
+
+
+.usuario-registrado {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #f8f8f8;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.usuario-registrado p {
+  margin: 0;
+  padding: 0;
+}
+
+.usuario-registrado a {
+  display: block;
+  margin-top: 5px;
+  color: #333;
+  text-decoration: none;
+}
+
+.usuario-registrado a:hover {
+  text-decoration: underline;
+}
+
+#suggestions {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 200px;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+

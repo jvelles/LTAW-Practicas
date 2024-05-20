@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Compra</title>
+    <link rel="stylesheet" href="/css/tienda.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Finalizar Compra</h1>
+        <h2>Productos en el carrito</h2>
+        <ul>
+            <% cart.forEach(product => { %>
+                <li><%= product.name %> - <%= product.price %> €</li>
+            <% }) %>
+        </ul>
+        <form action="/cart/checkout" method="post">
+            <label for="address">Dirección de Envío</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="cardNumber">Número de Tarjeta</label>
+            <input type="text" id="cardNumber" name="cardNumber" required>
+            
+            <button type="submit">Realizar Pedido</button>
+        </form>
+    </div>
+</body>
+</html>
