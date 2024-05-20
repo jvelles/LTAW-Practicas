@@ -2,15 +2,15 @@
   "users": [
     {
       "username": "root",
-      "realname": "Admin Root",
-      "email": "root@example.com",
-      "password": "root"
+      "realname": "Admin",
+      "email": "admin@example.com",
+      "password": "rootpass"
     },
     {
-      "username": "javi",
-      "realname": "Javier",
-      "email": "javi@gmail.com",
-      "password": "1234"
+      "username": "user1",
+      "realname": "User One",
+      "email": "user1@example.com",
+      "password": "user1pass"
     }
   ],
   "products": [
@@ -18,96 +18,34 @@
       "id": 1,
       "name": "Tarjeta Gráfica",
       "description": "La última tecnología en gráficos para tu PC.",
-      "price": 229.99,
-      "stock": 0,
+      "price": 500,
+      "stock": 10,
       "image": "/images/tarjeta-grafica1.png"
     },
     {
       "id": 2,
       "name": "Procesador",
       "description": "Alto rendimiento y eficiencia energética.",
-      "price": 319.99,
-      "stock": 11,
+      "price": 300,
+      "stock": 10,
       "image": "/images/procesador.png"
     },
     {
       "id": 3,
       "name": "Tarjeta RAM",
       "description": "Mejora la velocidad y el rendimiento de tu PC.",
-      "price": 79.99,
-      "stock": 25,
+      "price": 150,
+      "stock": 10,
       "image": "/images/tarjeta-ram.png"
     },
     {
       "id": 4,
       "name": "Ventiladores de PC",
       "description": "Mantén tu sistema fresco y en funcionamiento óptimo.",
-      "price": 29.99,
-      "stock": 30,
+      "price": 100,
+      "stock": 10,
       "image": "/images/ventiladores.png"
     }
   ],
-  "orders": [
-    {
-      "username": "javi",
-      "address": "Calle Acacias 12",
-      "cardNumber": "qadqa",
-      "products": [
-        {
-          "id": 1,
-          "name": "Tarjeta Gráfica",
-          "description": "La última tecnología en gráficos para tu PC.",
-          "price": 229.99,
-          "stock": 10,
-          "image": "/images/tarjeta-grafica1.png"
-        },
-        {
-          "id": 1,
-          "name": "Tarjeta Gráfica",
-          "description": "La última tecnología en gráficos para tu PC.",
-          "price": 229.99,
-          "stock": 10,
-          "image": "/images/tarjeta-grafica1.png"
-        }
-      ]
-    },
-    {
-      "username": "javi",
-      "address": "Calle Acacias 12",
-      "cardNumber": "adad",
-      "products": [
-        {
-          "id": 2,
-          "name": "Procesador",
-          "description": "Alto rendimiento y eficiencia energética.",
-          "price": 319.99,
-          "stock": 15,
-          "image": "/images/procesador.png"
-        },
-        {
-          "id": 2,
-          "name": "Procesador",
-          "description": "Alto rendimiento y eficiencia energética.",
-          "price": 319.99,
-          "stock": 15,
-          "image": "/images/procesador.png"
-        }
-      ]
-    },
-    {
-      "username": "root",
-      "address": "qax",
-      "cardNumber": "ax",
-      "products": [
-        {
-          "id": 2,
-          "name": "Procesador",
-          "description": "Alto rendimiento y eficiencia energética.",
-          "price": 319.99,
-          "stock": 14,
-          "image": "/images/procesador.png"
-        }
-      ]
-    }
-  ]
+  "orders": []
 }
