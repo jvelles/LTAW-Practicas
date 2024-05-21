@@ -81,10 +81,10 @@ button:hover {
   /* Estilo del contenido del modal */
   .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% desde arriba y centrado horizontalmente */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Puede ser más o menos, dependiendo de la preferencia */
+    width: 80%; 
   }
   
   /* El botón cerrar (x) */
