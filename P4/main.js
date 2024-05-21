@@ -82,7 +82,7 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'public', 'renderer.js'), // Asegúrate de que la ruta es correcta
+            preload: path.join(__dirname, 'public', 'renderer.js'), 
             contextIsolation: false,
             enableRemoteModule: true,
             nodeIntegration: true
@@ -112,7 +112,7 @@ function createWindow() {
         });
     });
 
-    // Asegúrate de eliminar cualquier escucha duplicada
+  
     ipcMain.removeAllListeners('send-test-message');
     ipcMain.on('send-test-message', (event, message) => {
         const testMessage = `Servidor: ${message}`;
